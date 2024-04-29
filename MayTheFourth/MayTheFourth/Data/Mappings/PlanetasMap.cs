@@ -1,4 +1,4 @@
-﻿using MayTheFourth.Dtos;
+﻿using MayTheFourth.Entities.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -80,29 +80,5 @@ public class PlanetasMap : IEntityTypeConfiguration<Planeta>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(60);
     
-        // Relacionamentos
-        builder
-            .HasMany(x => x.Personagens)
-            .WithOne(x => x.Planeta)
-            .HasConstraintName("FK_Planeta_Personagem")
-            .OnDelete(DeleteBehavior.Cascade);
-        
-        builder
-            .HasMany(x => x.Filmes)
-            .WithMany(x => x.Planetas)
-            .UsingEntity<Dictionary<string, object>>(
-                "FilmePlaneta",
-                filme => filme
-                    .HasOne<Filme>()
-                    .WithMany()
-                    .HasForeignKey("FilmeId")
-                    .HasConstraintName("FK_Filme_FilmeId")
-                    .OnDelete(DeleteBehavior.Cascade),
-                planeta => planeta
-                    .HasOne<Planeta>()
-                    .WithMany()
-                    .HasForeignKey("PlanetaId")
-                    .HasConstraintName("FK_PlanetaFilme_PlanetaId")
-                    .OnDelete(DeleteBehavior.Cascade));
     }
 }

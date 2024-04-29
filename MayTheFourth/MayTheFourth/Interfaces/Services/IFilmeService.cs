@@ -1,5 +1,5 @@
 ﻿using MayTheFourth.Data;
-using MayTheFourth.Dtos;
+using MayTheFourth.Entities.Dtos;
 
 namespace MayTheFourth.Interfaces.Services;
 

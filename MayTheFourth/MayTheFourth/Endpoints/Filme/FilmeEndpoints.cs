@@ -51,7 +51,7 @@ public static class FilmeEndpoints
     /// <param name="context">O contexto do banco de dados para acesso aos dados.</param>
     /// <param name="filmeService">O serviço que fornece operações de negócio relacionadas a filmes.</param>
     /// <returns>Um resultado HTTP indicando sucesso ou falha na criação do filme.</returns>
-    public static async Task<IResult> PostFilme([FromBody] Dtos.Filme model,
+    public static async Task<IResult> PostFilme([FromBody] Entities.Dtos.Filme model,
         [FromServices] MayTheFourthDataContext context,
         [FromServices] IFilmeService filmeService)
     {
@@ -61,7 +61,7 @@ public static class FilmeEndpoints
             if (errors.Any())
                 return Results.ValidationProblem(errors.ToDictionary(error => error, error => new string[] { error }));
 
-            var filme = new Dtos.Filme()
+            var filme = new Entities.Dtos.Filme()
             {
                 Titulo = model.Titulo,
                 Episodio = model.Episodio,

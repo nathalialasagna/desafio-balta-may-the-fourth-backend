@@ -1,4 +1,4 @@
-﻿using MayTheFourth.Dtos;
+﻿using MayTheFourth.Entities.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -99,23 +99,5 @@ public class NavesEstelaresMap : IEntityTypeConfiguration<NavesEstelares>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
         
-        // Relacionamentos
-        builder
-            .HasMany(x => x.Filmes)
-            .WithMany(x => x.Naves)
-            .UsingEntity<Dictionary<string, object>>(
-                "PersonagemNavesEstelares",
-                filme => filme
-                    .HasOne<Filme>()
-                    .WithMany()
-                    .HasForeignKey("FilmeId")
-                    .HasConstraintName("FK_Filme_FilmeId")
-                    .OnDelete(DeleteBehavior.Cascade),
-                nave => nave
-                    .HasOne<NavesEstelares>()
-                    .WithMany()
-                    .HasForeignKey("NavesEstelaresId")
-                    .HasConstraintName("FK_NavesEstelaresFilme_NavesEstelaresId")
-                    .OnDelete(DeleteBehavior.Cascade));
     }
 }

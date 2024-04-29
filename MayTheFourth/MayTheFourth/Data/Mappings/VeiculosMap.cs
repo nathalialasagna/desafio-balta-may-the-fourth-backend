@@ -1,4 +1,4 @@
-﻿using MayTheFourth.Dtos;
+﻿using MayTheFourth.Entities.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -92,23 +92,5 @@ public class VeiculosMap : IEntityTypeConfiguration<Veiculo>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(60);
             
-        // Relacionamentos
-        builder
-            .HasMany(x => x.Filmes)
-            .WithMany(x => x.Veiculos)
-            .UsingEntity<Dictionary<string, object>>(
-                "FilmePlaneta",
-                filme => filme
-                    .HasOne<Filme>()
-                    .WithMany()
-                    .HasForeignKey("FilmeId")
-                    .HasConstraintName("FK_Filme_FilmeId")
-                    .OnDelete(DeleteBehavior.Cascade),
-                veiculo => veiculo
-                    .HasOne<Veiculo>()
-                    .WithMany()
-                    .HasForeignKey("VeiculoId")
-                    .HasConstraintName("FK_VeiculoFilme_VeiculoId")
-                    .OnDelete(DeleteBehavior.Cascade));    
     }
 }
