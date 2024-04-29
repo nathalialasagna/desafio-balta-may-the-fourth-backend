@@ -1,8 +1,8 @@
-﻿using MayTheFourth.Data.Mappings;
-using MayTheFourth.Dtos;
+﻿using MayTheFourth.Domain.Entities;
+using MayTheFourth.Infra.Mappings;
 using Microsoft.EntityFrameworkCore;
 
-namespace MayTheFourth.Data;
+namespace MayTheFourth.Infra.Context;
 
 /// <summary>
 /// Contexto do Entity Framework representando a conexão com o banco de dados e o modelo para o sistema MayTheFourth.
@@ -14,8 +14,8 @@ public class MayTheFourthDataContext : DbContext
     /// Inicializa uma nova instância da classe MayTheFourthDataContext com as opções configuradas.
     /// </summary>
     /// <param name="options">As opções de configuração para o contexto do DbContext.</param>
-    public MayTheFourthDataContext(DbContextOptions<MayTheFourthDataContext> options) : base(options){}
-    
+    public MayTheFourthDataContext(DbContextOptions<MayTheFourthDataContext> options) : base(options) { }
+
     /// <summary>
     /// Representa uma coleção de filmes no banco de dados.
     /// </summary>
@@ -30,17 +30,17 @@ public class MayTheFourthDataContext : DbContext
     /// Representa uma coleção de personagens no banco de dados.
     /// </summary>
     public DbSet<Personagem> Personagens { get; set; }
-    
+
     /// <summary>
     /// Representa uma coleção de planetas no banco de dados.
     /// </summary>
     public DbSet<Planeta> Planetas { get; set; }
-    
+
     /// <summary>
     /// Representa uma coleção de veiculos no banco de dados.
     /// </summary>
     public DbSet<Veiculo> Veiculos { get; set; }
-    
+
     /// <summary>
     /// Aplica configurações de mapeamento para cada entidade ao criar o modelo de banco de dados.
     /// </summary>
@@ -53,10 +53,4 @@ public class MayTheFourthDataContext : DbContext
         modelBuilder.ApplyConfiguration(new PlanetasMap());
         modelBuilder.ApplyConfiguration(new VeiculosMap());
     }
-
-    /// <summary>
-    /// Configura o contexto para usar um banco de dados SQLite com o arquivo especificado.
-    /// </summary>
-    /// <param name="options">Construtor de opções para configurar o contexto.</param>
-    protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite("DataSource=maythefourth.db;Cache=Shared");
 }

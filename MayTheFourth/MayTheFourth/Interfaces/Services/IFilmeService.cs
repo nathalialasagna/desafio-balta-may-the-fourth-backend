@@ -1,5 +1,5 @@
-﻿using MayTheFourth.Data;
-using MayTheFourth.Dtos;
+﻿using MayTheFourth.Domain.Entities;
+using MayTheFourth.Infra.Context;
 
 namespace MayTheFourth.Interfaces.Services;
 

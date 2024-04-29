@@ -1,4 +1,6 @@
-﻿namespace MayTheFourth.Helpers.Validations;
+﻿using MayTheFourth.Domain.Entities;
+
+namespace MayTheFourth.Helpers.Validations;
 
 /// <summary>
 /// Fornece métodos estáticos para validar as informações de um filme antes de sua persistência no banco de dados.
@@ -10,7 +12,7 @@ public static class ValidateFilme
     /// </summary>
     /// <param name="filme">O DTO do filme a ser validado.</param>
     /// <returns>Uma lista de strings contendo mensagens de erro relacionadas à validação dos dados do filme.</returns>
-    public static List<string> ValidateFilm(Dtos.Filme filme)
+    public static List<string> ValidateFilm(Filme filme)
     {
         var errors = new List<string>();
 

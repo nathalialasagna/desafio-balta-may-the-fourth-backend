@@ -1,7 +1,8 @@
-using MayTheFourth.Data;
+using MayTheFourth.Infra.Context;
 using MayTheFourth.Interfaces.Services;
 using MayTheFourth.Mappings.Filme;
 using MayTheFourth.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ app.Run();
 
 void ConfigureServices(WebApplicationBuilder builder)
 {
-    builder.Services.AddDbContext<MayTheFourthDataContext>();
+    builder.Services.AddDbContext<MayTheFourthDataContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.AddScoped<IFilmeService, FilmeService>();
 }
 
