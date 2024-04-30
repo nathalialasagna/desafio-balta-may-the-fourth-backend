@@ -11,8 +11,17 @@ public class VeiculoEndpoints : CarterModule
     {
         app.MapGet("/", async (IVeiculoRepository veiculoRepository) =>
         {
-            var filmes = await veiculoRepository.ListAsync();
-            return Results.Ok(filmes);
+            var veiculos = await veiculoRepository.ListAsync();
+            return Results.Ok(veiculos);
+        });
+
+        app.MapGet("/{idVeiculo:int}", async (int idVeiculo, IVeiculoRepository veiculoRepositoryy) =>
+        {
+            var veiculo = await veiculoRepositoryy.GetAsync(v => v.Id == idVeiculo);
+
+            if (veiculo == null) return Results.NotFound();
+
+            return Results.Ok(veiculo);
         });
     }
 }

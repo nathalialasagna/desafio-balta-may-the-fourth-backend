@@ -11,8 +11,17 @@ public class PersonagemEndpoints : CarterModule
     {
         app.MapGet("/", async (IPersonagemRepository personagemRepository) =>
         {
-            var filmes = await personagemRepository.ListAsync();
-            return Results.Ok(filmes);
+            var personagens = await personagemRepository.ListAsync();
+            return Results.Ok(personagens);
+        });
+
+        app.MapGet("/{idPersonagem:int}", async (int idPersonagem, IPersonagemRepository personagemRepository) =>
+        {
+            var personagem = await personagemRepository.GetAsync(p => p.Id == idPersonagem);
+
+            if (personagem == null) return Results.NotFound();
+
+            return Results.Ok(personagem);
         });
     }
 }
