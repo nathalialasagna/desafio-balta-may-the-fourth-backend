@@ -3,15 +3,15 @@ using MayTheFourth.Domain.Interfaces.Repositories;
 
 namespace MayTheFourth.API.Endpoints;
 
-public class FilmeEndpoints : CarterModule
+public class VeiculoEndpoints : CarterModule
 {
-    public FilmeEndpoints() : base("/v2/filmes") { }
+    public VeiculoEndpoints() : base("/v2/veiculos") { }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/", async (IFilmeRepository filmeRepository) =>
+        app.MapGet("/", async (IVeiculoRepository veiculoRepository) =>
         {
-            var filmes = await filmeRepository.ListAsync();
+            var filmes = await veiculoRepository.ListAsync();
             return Results.Ok(filmes);
         });
     }

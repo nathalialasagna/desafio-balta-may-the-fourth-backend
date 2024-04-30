@@ -13,8 +13,8 @@ public static class FilmeMapping
     /// <param name="app">A instância da aplicação web na qual os endpoints serão registrados.</param>
     public static void FilmeMapEndpoints(this WebApplication app)
     {
-        app.MapGet("/v1/filme", FilmeEndpoints.GetFilme);
-        app.MapGet("/v1/filme/{idfilme:int}", FilmeEndpoints.GetFilmeById);
-        app.MapPost("/v1/filme", FilmeEndpoints.PostFilme);
+        app.MapGet("/v1/filme", FilmeEndpointsV1.GetFilme);
+        app.MapGet("/v1/filme/{idfilme:int}", FilmeEndpointsV1.GetFilmeById);
+        app.MapPost("/v1/filme", FilmeEndpointsV1.PostFilme);
     }
 }
