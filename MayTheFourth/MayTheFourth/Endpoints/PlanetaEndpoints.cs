@@ -11,8 +11,17 @@ public class PlanetaEndpoints : CarterModule
     {
         app.MapGet("/", async (IPlanetaRepository planetaRepositorymRepository) =>
         {
-            var filmes = await planetaRepositorymRepository.ListAsync();
-            return Results.Ok(filmes);
+            var planetas = await planetaRepositorymRepository.ListAsync();
+            return Results.Ok(planetas);
+        });
+
+        app.MapGet("/{idPlaneta:int}", async (int idPlaneta, IPlanetaRepository planetaRepositorymRepository) =>
+        {
+            var planeta = await planetaRepositorymRepository.GetAsync(p => p.Id == idPlaneta);
+
+            if (planeta == null) return Results.NotFound();
+
+            return Results.Ok(planeta);
         });
     }
 }

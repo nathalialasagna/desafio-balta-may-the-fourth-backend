@@ -11,8 +11,17 @@ public class NavesEstelaresEndpoints : CarterModule
     {
         app.MapGet("/", async (INavesEstelaresRepository navesEstelaresRepository) =>
         {
-            var filmes = await navesEstelaresRepository.ListAsync();
-            return Results.Ok(filmes);
+            var naves = await navesEstelaresRepository.ListAsync();
+            return Results.Ok(naves);
+        });
+
+        app.MapGet("/{idNave:int}", async (int idNave, INavesEstelaresRepository navesEstelaresRepository) =>
+        {
+            var nave = await navesEstelaresRepository.GetAsync(n => n.Id == idNave);
+
+            if(nave == null) return Results.NotFound();
+
+            return Results.Ok(nave);
         });
     }
 }
