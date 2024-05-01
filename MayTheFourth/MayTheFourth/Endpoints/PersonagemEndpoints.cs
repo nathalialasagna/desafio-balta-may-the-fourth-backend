@@ -5,7 +5,10 @@ namespace MayTheFourth.API.Endpoints;
 
 public class PersonagemEndpoints : CarterModule
 {
-    public PersonagemEndpoints() : base("/v2/personagens") { }
+    public PersonagemEndpoints() : base("/personagens") 
+    {
+        WithTags("personagens");
+    }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {

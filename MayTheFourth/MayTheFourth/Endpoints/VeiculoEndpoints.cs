@@ -5,7 +5,10 @@ namespace MayTheFourth.API.Endpoints;
 
 public class VeiculoEndpoints : CarterModule
 {
-    public VeiculoEndpoints() : base("/v2/veiculos") { }
+    public VeiculoEndpoints() : base("/veiculos")
+    {
+        WithTags("veiculos");
+    }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {

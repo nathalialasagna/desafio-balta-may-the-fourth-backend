@@ -5,7 +5,10 @@ namespace MayTheFourth.API.Endpoints;
 
 public class FilmeEndpoints : CarterModule
 {
-    public FilmeEndpoints() : base("/v2/filmes") { }
+    public FilmeEndpoints() : base("/filmes")
+    {
+        WithTags("filmes");
+    }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {

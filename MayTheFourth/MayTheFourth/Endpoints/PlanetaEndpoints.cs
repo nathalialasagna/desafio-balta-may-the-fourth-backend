@@ -5,7 +5,10 @@ namespace MayTheFourth.API.Endpoints;
 
 public class PlanetaEndpoints : CarterModule
 {
-    public PlanetaEndpoints() : base("/v2/planetas") { }
+    public PlanetaEndpoints() : base("/planetas")
+    {
+        WithTags("planetas");
+    }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {

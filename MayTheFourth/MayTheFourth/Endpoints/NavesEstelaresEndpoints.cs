@@ -5,7 +5,10 @@ namespace MayTheFourth.API.Endpoints;
 
 public class NavesEstelaresEndpoints : CarterModule
 {
-    public NavesEstelaresEndpoints() : base("/v2/navesEstelares") { }
+    public NavesEstelaresEndpoints() : base("/navesEstelares")
+    {
+        WithTags("navesEstelares");
+    }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
